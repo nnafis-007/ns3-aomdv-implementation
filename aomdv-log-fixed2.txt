@@ -1,0 +1,43 @@
++0.000000000s AomdvRoutingProtocol:Start(0x644d00887450)
++0.000000000s AomdvRoutingProtocol:Start(0x644d00727620)
++0.000000000s AomdvRoutingProtocol:Start(0x644d007273f0)
++0.000000000s AomdvRoutingProtocol:Start(0x644d0082fd60)
++0.000000000s AomdvRoutingProtocol:Start(0x644d0089eab0)
++0.000000000s AomdvRoutingProtocol:Start(0x644d008a2520)
++0.000000000s AomdvRoutingProtocol:Start(0x644d008a5f90)
++0.000000000s AomdvRoutingProtocol:Start(0x644d008a9a00)
++0.000000000s AomdvRoutingProtocol:Start(0x644d008ad470)
++0.000000000s AomdvRoutingProtocol:Start(0x644d008b0ee0)
++0.000000000s AomdvRoutingProtocol:Start(0x644d008b4950)
++0.000000000s AomdvRoutingProtocol:Start(0x644d008b83c0)
++0.000000000s AomdvRoutingProtocol:Start(0x644d008bbe30)
++0.000000000s AomdvRoutingProtocol:Start(0x644d008bf8a0)
++0.000000000s AomdvRoutingProtocol:Start(0x644d008c3310)
++0.000000000s AomdvRoutingProtocol:Start(0x644d008c6d80)
++0.000000000s AomdvRoutingProtocol:Start(0x644d008ca7f0)
++0.000000000s AomdvRoutingProtocol:Start(0x644d008ce260)
++0.000000000s AomdvRoutingProtocol:Start(0x644d008d1cd0)
++0.000000000s AomdvRoutingProtocol:Start(0x644d008d5740)
++2.000000000s AOMDV sent RREQ for 10.1.1.20 id=1
++3.000000000s AOMDV sent RREQ for 10.1.1.20 id=2
++8.000000000s AOMDV sent RREQ for 10.1.1.20 id=3
++9.000000000s AOMDV sent RREQ for 10.1.1.20 id=4
++14.000000000s AOMDV sent RREQ for 10.1.1.20 id=5
++15.000000000s AOMDV sent RREQ for 10.1.1.20 id=6
++20.000000000s AOMDV sent RREQ for 10.1.1.20 id=7
++21.000000000s AOMDV sent RREQ for 10.1.1.20 id=8
++26.000000000s AOMDV sent RREQ for 10.1.1.20 id=9
++27.000000000s AOMDV sent RREQ for 10.1.1.20 id=10
++32.000000000s AOMDV sent RREQ for 10.1.1.20 id=11
++33.000000000s AOMDV sent RREQ for 10.1.1.20 id=12
++38.000000000s AOMDV sent RREQ for 10.1.1.20 id=13
++39.000000000s AOMDV sent RREQ for 10.1.1.20 id=14
++44.000000000s AOMDV sent RREQ for 10.1.1.20 id=15
++45.000000000s AOMDV sent RREQ for 10.1.1.20 id=16
++50.000000000s AOMDV sent RREQ for 10.1.1.20 id=17
++51.000000000s AOMDV sent RREQ for 10.1.1.20 id=18
++56.000000000s AOMDV sent RREQ for 10.1.1.20 id=19
++57.000000000s AOMDV sent RREQ for 10.1.1.20 id=20
+Running AOMDV simulation: 20 nodes, 60s, 4 max paths
+
+========== Flow Statistics ==========
