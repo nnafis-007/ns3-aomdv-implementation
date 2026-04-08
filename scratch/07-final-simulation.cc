@@ -24,16 +24,16 @@ int
 main(int argc, char* argv[])
 {
     // ── Simulation parameters (all adjustable from command line) ──
-    uint32_t nNodes    = 40;
+    uint32_t nNodes    = 10;
     double   simTime   = 20.0;
     std::string protocol = "AODV";
     double   errorRate = 0.0;
     double   minSpeed = 1.0;
     double   maxSpeed = 5.0;
-    double   pauseTime = 1.0;
-    uint32_t nFlows    = 20;
+    double   pauseTime = 2.0;
+    uint32_t nFlows    = 10;
     uint32_t packetSize = 512;
-    double appInterval = 0.05;
+    double appInterval = 0.12;
     double lossPenaltyMs = -1.0;
     std::string csvFile = "aodv-ERR-manet-results.csv";
     double maxPosition = 130.0;
@@ -62,7 +62,7 @@ main(int argc, char* argv[])
 
     if (lossPenaltyMs < 0.0)
     {
-        lossPenaltyMs = simTime * 20.0;
+        lossPenaltyMs = simTime * 100.0;
     }
 
     // ── Fix RNG so every protocol sees identical initial topology ──
@@ -297,12 +297,9 @@ main(int argc, char* argv[])
 
     double throughputKbps = throughputBps / 1000.0;
 
-    double avgDelayMs = (dataRx > 0)?
-        (dataDelaySum / dataRx) * 1000.0 : 0.0;
-
     // Loss-aware delay: assign a timeout-like penalty to undelivered packets,
     // then average over all transmitted packets.
-    double delayWithLossPenaltyMs = (dataTx > 0)?
+    double avgDelay = (dataTx > 0)?
         (((dataDelaySum * 1000.0) + (static_cast<double>(dataLost) * lossPenaltyMs)) /
          static_cast<double>(dataTx)) : 0.0;
 
@@ -337,8 +334,7 @@ main(int argc, char* argv[])
     std::cout << "║ PDR:                 " << std::setw(16) << pdr           << " % ║\n";
     std::cout << "║ Throughput (THPT):   " << std::setw(13) << throughputBps  << " bps  ║\n";
     std::cout << "║ Goodput (GPT):       " << std::setw(13) << goodputBps     << " bps  ║\n";
-    std::cout << "║ Avg E2E Delay:       " << std::setw(15) << avgDelayMs    << " ms ║\n";
-    std::cout << "║ Delay+Loss Penalty:  " << std::setw(14) << delayWithLossPenaltyMs << " ms ║\n";
+    std::cout << "║ Avg Delay:           " << std::setw(14) << avgDelay << " ms ║\n";
     std::cout << "║ PCMP (sink energy):  " << std::setw(14) << sinkPowerConsumptionJ << " J ║\n";
     std::cout << "║ Routing Overhead:    " << std::setw(18) << std::setprecision(4) << routingOverhead << " ║\n";
     std::cout << "║ Packet Loss Rate:    " << std::setw(16) << std::setprecision(2) << packetLossRate  << " % ║\n";
@@ -362,7 +358,7 @@ main(int argc, char* argv[])
             << "SimTime_s,PacketSize_B,Seed,Run,"
             << "DataTxPkts,DataRxPkts,DataLostPkts,"
             << "RoutingTxPkts,RoutingRxPkts,"
-            << "PDR_pct,THPT_bps,GPT_bps,Throughput_kbps,AvgDelay_ms,DelayWithLossPenalty_ms,PCMP_J,"
+            << "PDR_pct,THPT_bps,GPT_bps,Throughput_kbps,avgDelay,PCMP_J,"
             << "RoutingOverhead,PacketLossRate_pct,"
             << "LostNoRoute,LostQueueTTL\n";
     }
@@ -374,7 +370,7 @@ main(int argc, char* argv[])
         << routingTx      << "," << routingRx  << ","
         << std::fixed << std::setprecision(4)
         << pdr            << "," << throughputBps << "," << goodputBps << ","
-        << throughputKbps << "," << avgDelayMs << "," << delayWithLossPenaltyMs << ","
+        << throughputKbps << "," << avgDelay << ","
         << sinkPowerConsumptionJ << ","
         << routingOverhead << "," << packetLossRate << ","
         << lostByNoRoute  << "," << lostByQueueFull << "\n";
