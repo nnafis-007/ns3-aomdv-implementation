@@ -1,2 +1,0 @@
-Mode,Nodes,Flows,Pps,Speed_mps,SimTime_s,PacketSize_B,Seed,Run,DataTxPkts,DataRxPkts,DataLostPkts,Throughput_bps,AvgDelay_ms,PDR,DropRatio,EnergyConsumed_J
-wired,20,10,100,0,10,512,1,1,6760,304,2729,131328,2968.21,0.0449704,0.403698,0

@@ -1,0 +1,6 @@
+Mode,Nodes,Flows,Pps,Speed_mps,SimTime_s,PacketSize_B,Seed,Run,DataTxPkts,DataRxPkts,DataLostPkts,Throughput_bps,AvgDelay_ms,PDR,DropRatio,EnergyConsumed_J
+wired,8,10,5,0,60,512,1,1,2580,1907,413,137304,223.411,0.739147,0.160078,0
+wired,12,10,5,0,60,512,1,1,2681,2190,338,157680,66.9197,0.816859,0.126072,0
+wired,16,10,5,0,60,512,1,1,2221,0,1845,0,0,0,0.830707,0
+wired,20,10,5,0,60,512,1,1,1626,7,1446,504,923.197,0.00430504,0.889299,0
+wired,24,10,5,0,60,512,1,1,1030,0,842,0,0,0,0.817476,0

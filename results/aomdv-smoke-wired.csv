@@ -1,2 +1,0 @@
-Mode,Protocol,Nodes,Flows,PpsPerFlow,Speed_mps,Area_m,SimTime_s,PacketSize_B,Seed,Run,DataTxPkts,DataRxPkts,DataLostPkts,Throughput_bps,AvgDelay_ms,PDR,DropRatio,EnergyConsumed_J,RoutingTxPkts,RoutingRxPkts
-wired,AOMDV,20,10,100,0,70,8,512,1,1,4677,1691,2355,913140.000000,1303.056119,0.361557,0.503528,0.000000,53,51
