@@ -1,0 +1,2 @@
+WirelessNodes,WiredNodes,P2PLinks,Seed,Run,SimTime_s,PacketSize_B,WirelessSpeed_mps,WiredTeacherFlows,WiredTeacherPps,WirelessTeacherFlows,WirelessTeacherPps,WiredEffectiveFlows,WiredEffectivePps,WirelessEffectiveFlows,WirelessEffectivePps,DataTxPkts,DataRxPkts,DataLostPkts,Throughput_bps,AvgDelay_ms,PDR,DropRatio,EnergyConsumed_J
+5,5,1,1,1,20,512,5,10,200,20,100,5,6,20,10,2475,1425,462,307800,3.91403,0.575758,0.186667,83.0272

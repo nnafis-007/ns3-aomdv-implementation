@@ -197,7 +197,7 @@ main(int argc, char* argv[])
         return 2;
     }
 
-    // Preserve teacher-provided values for CSV/reporting while using scaled values internally.
+    // Validation of CLA
     const uint32_t teacherNodes = nNodes;
     const uint32_t teacherFlows = nFlows;
     const uint32_t teacherPps = pps;
