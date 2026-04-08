@@ -95,6 +95,23 @@ The following modifications were implemented:
 
 Throughput increases with PPS initially, reaching a peak before slightly declining due to network congestion. Delay and packet drop ratio increase steadily with higher PPS, while PDR decreases. Energy consumption also increases with load.
 
+\begin{table}[H]
+    \centering
+    \small
+    \caption{Wireless PPS sweep results}
+    \begin{tabular}{cccccc}
+        \toprule
+        PPS & Throughput (bps) & Delay (ms) & PDR & Drop Ratio & Energy (J) \\
+        \midrule
+        100 & 513432 & 6.18 & 0.6896 & 0.0766 & 338.63 \\
+        200 & 806760 & 9.06 & 0.5414 & 0.1336 & 342.46 \\
+        300 & 1191670 & 16.48 & 0.5340 & 0.1697 & 343.55 \\
+        400 & 1392550 & 18.81 & 0.4694 & 0.1789 & 345.66 \\
+        500 & 1354320 & 26.27 & 0.3773 & 0.2593 & 346.80 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
 \subsubsection{Effect of Number of Flows}
 
 \begin{figure}[H]
@@ -104,6 +121,23 @@ Throughput increases with PPS initially, reaching a peak before slightly declini
 \end{figure}
 
 Throughput peaks at moderate flow levels and decreases as contention increases. Delay rises significantly at higher flows, indicating congestion. Packet delivery ratio drops sharply, while packet drops increase.
+
+\begin{table}[H]
+    \centering
+    \small
+    \caption{Wireless flow sweep results}
+    \begin{tabular}{cccccc}
+        \toprule
+        Flows & Throughput (bps) & Delay (ms) & PDR & Drop Ratio & Energy (J) \\
+        \midrule
+        10 & 156168 & 4.98 & 0.4446 & 0.1328 & 337.33 \\
+        20 & 513432 & 6.18 & 0.6896 & 0.0766 & 338.63 \\
+        30 & 618408 & 9.89 & 0.5592 & 0.1307 & 341.49 \\
+        40 & 671760 & 18.81 & 0.4545 & 0.1856 & 345.00 \\
+        50 & 741528 & 22.46 & 0.4042 & 0.2212 & 345.00 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
 \subsubsection{Effect of Node Speed}
 
@@ -115,6 +149,23 @@ Throughput peaks at moderate flow levels and decreases as contention increases. 
 
 Higher mobility leads to unstable routes, reducing throughput and PDR. Delay and packet loss increase due to frequent route breakages.
 
+\begin{table}[H]
+    \centering
+    \small
+    \caption{Wireless speed sweep results}
+    \begin{tabular}{cccccc}
+        \toprule
+        Speed (m/s) & Throughput (bps) & Delay (ms) & PDR & Drop Ratio & Energy (J) \\
+        \midrule
+        5 & 545400 & 4.19 & 0.7315 & 0.1530 & 341.64 \\
+        10 & 419688 & 3.90 & 0.5828 & 0.1395 & 338.10 \\
+        15 & 513432 & 6.18 & 0.6896 & 0.0766 & 338.63 \\
+        20 & 472608 & 12.44 & 0.6373 & 0.1689 & 340.47 \\
+        25 & 416232 & 7.64 & 0.5594 & 0.1945 & 338.47 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
 \subsubsection{Effect of Number of Nodes}
 
 \begin{figure}[H]
@@ -124,6 +175,23 @@ Higher mobility leads to unstable routes, reducing throughput and PDR. Delay and
 \end{figure}
 
 Increasing node density initially improves connectivity but eventually leads to congestion, reducing throughput and PDR while increasing delay and energy consumption.
+
+\begin{table}[H]
+    \centering
+    \small
+    \caption{Wireless node sweep results}
+    \begin{tabular}{cccccc}
+        \toprule
+        Nodes & Throughput (bps) & Delay (ms) & PDR & Drop Ratio & Energy (J) \\
+        \midrule
+        20 & 513432 & 6.18 & 0.6896 & 0.0766 & 338.63 \\
+        40 & 205848 & 17.92 & 0.2819 & 0.3014 & 679.70 \\
+        60 & 176688 & 11.21 & 0.2424 & 0.3289 & 1010.64 \\
+        80 & 81216 & 6.24 & 0.1157 & 0.3876 & 1342.05 \\
+        100 & 77976 & 12.71 & 0.1133 & 0.3738 & 1680.03 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
 \subsection{Wired Network Results}
 
@@ -137,6 +205,23 @@ Increasing node density initially improves connectivity but eventually leads to 
 
 Throughput increases up to a threshold and then drops sharply due to buffer overflow and congestion. Delay increases significantly at higher PPS values.
 
+\begin{table}[H]
+    \centering
+    \small
+    \caption{Wired PPS sweep results}
+    \begin{tabular}{ccccc}
+        \toprule
+        PPS & Throughput (bps) & Delay (ms) & PDR & Drop Ratio \\
+        \midrule
+        100 & 109728 & 54.12 & 0.9525 & 0.0475 \\
+        200 & 228600 & 12.39 & 0.9854 & 0.0146 \\
+        300 & 233064 & 289.45 & 0.6855 & 0.2700 \\
+        400 & 215496 & 353.41 & 0.4886 & 0.4445 \\
+        500 & 205344 & 419.75 & 0.3670 & 0.5773 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
 \subsubsection{Effect of Number of Flows}
 
 \begin{figure}[H]
@@ -147,6 +232,23 @@ Throughput increases up to a threshold and then drops sharply due to buffer over
 
 As flows increase, throughput decreases due to contention. Delay and packet drop ratio increase significantly.
 
+\begin{table}[H]
+    \centering
+    \small
+    \caption{Wired flow sweep results}
+    \begin{tabular}{ccccc}
+        \toprule
+        Flows & Throughput (bps) & Delay (ms) & PDR & Drop Ratio \\
+        \midrule
+        10 & 174456 & 3.76 & 0.9963 & 0.0037 \\
+        20 & 233064 & 289.45 & 0.6855 & 0.2700 \\
+        30 & 233784 & 399.86 & 0.4737 & 0.4691 \\
+        40 & 225288 & 455.52 & 0.3357 & 0.6176 \\
+        50 & 208224 & 494.76 & 0.2578 & 0.6924 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
 \subsubsection{Effect of Number of Nodes}
 
 \begin{figure}[H]
@@ -156,6 +258,23 @@ As flows increase, throughput decreases due to contention. Delay and packet drop
 \end{figure}
 
 Higher node counts result in severe degradation in throughput and reliability due to routing overhead and congestion.
+
+\begin{table}[H]
+    \centering
+    \small
+    \caption{Wired node sweep results}
+    \begin{tabular}{ccccc}
+        \toprule
+        Nodes & Throughput (bps) & Delay (ms) & PDR & Drop Ratio \\
+        \midrule
+        20 & 233064 & 289.45 & 0.6855 & 0.2700 \\
+        40 & 48456 & 686.84 & 0.1417 & 0.7904 \\
+        60 & 2592 & 940.10 & 0.0114 & 0.8980 \\
+        80 & 1728 & 590.31 & 0.0109 & 0.9460 \\
+        100 & 0 & 0.00 & 0.0000 & 0.7985 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
 \section{Summary Findings}
 

@@ -77,6 +77,51 @@ This setup makes the comparison more meaningful, since any observed change in pe
 
 Figure 1 shows that increasing error rate degrades all protocols, but the extent of degradation differs significantly. AODV achieves the best PDR and throughput under zero error, but its delay grows very sharply once errors are introduced. DSDV shows moderate throughput and delivery performance, but its packet loss remains relatively high across all cases. OLSR maintains comparatively low packet loss and good robustness under higher error, though its throughput stays lower than AODV at baseline.
 
+\begin{table}[H]
+    \centering
+    \small
+    \caption{0\% error: AODV, DSDV, OLSR metrics}
+    \begin{tabular}{lccccc}
+        \toprule
+        Protocol & PDR (\%) & Throughput (kbps) & Delay (ms) & Loss (\%) & Routing OH \\
+        \midrule
+        AODV & 92.31 & 241.27 & 86.18 & 2.89 & 0.1678 \\
+        DSDV & 65.12 & 170.21 & 418.63 & 15.70 & 0.0000 \\
+        OLSR & 84.12 & 196.78 & 52.60 & 1.11 & 0.0000 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \small
+    \caption{10\% error: AODV, DSDV, OLSR metrics}
+    \begin{tabular}{lccccc}
+        \toprule
+        Protocol & PDR (\%) & Throughput (kbps) & Delay (ms) & Loss (\%) & Routing OH \\
+        \midrule
+        AODV & 75.62 & 197.64 & 765.52 & 16.45 & 0.2331 \\
+        DSDV & 50.74 & 132.62 & 461.83 & 18.51 & 0.0000 \\
+        OLSR & 79.14 & 123.77 & 173.33 & 8.15 & 0.0000 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \small
+    \caption{20\% error: AODV, DSDV, OLSR metrics}
+    \begin{tabular}{lccccc}
+        \toprule
+        Protocol & PDR (\%) & Throughput (kbps) & Delay (ms) & Loss (\%) & Routing OH \\
+        \midrule
+        AODV & 59.09 & 154.44 & 812.25 & 24.71 & 0.0661 \\
+        DSDV & 44.79 & 117.07 & 500.41 & 20.50 & 0.0000 \\
+        OLSR & 77.93 & 119.02 & 205.49 & 9.76 & 0.0000 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
 \subsection{AODV vs AOMDV Under Error Variation}
 
 \begin{figure}[H]
@@ -86,6 +131,36 @@ Figure 1 shows that increasing error rate degrades all protocols, but the extent
 \end{figure}
 
 Figure 2 highlights the specific impact of multipath routing. At 0\% error, AODV slightly outperforms AOMDV in PDR and throughput. However, as the error rate increases to 10\% and 20\%, AOMDV clearly becomes more resilient. It delivers lower delay and lower packet loss than AODV under both impaired conditions, showing the benefit of maintaining alternate paths when the primary path becomes unreliable.
+
+\begin{table}[H]
+    \centering
+    \small
+    \caption{AODV vs AOMDV: delivery and throughput across error rates}
+    \begin{tabular}{ccccc}
+        \toprule
+        Error (\%) & AODV PDR (\%) & AOMDV PDR (\%) & AODV Thpt (kbps) & AOMDV Thpt (kbps) \\
+        \midrule
+        0 & 92.31 & 79.55 & 241.30 & 145.40 \\
+        10 & 75.62 & 76.01 & 197.60 & 122.50 \\
+        20 & 59.09 & 62.19 & 154.40 & 92.02 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \small
+    \caption{AODV vs AOMDV: delay and packet loss across error rates}
+    \begin{tabular}{ccccc}
+        \toprule
+        Error (\%) & AODV Delay (ms) & AOMDV Delay (ms) & AODV Loss (\%) & AOMDV Loss (\%) \\
+        \midrule
+        0 & 39.90 & 30.93 & 2.89 & 1.42 \\
+        10 & 502.40 & 70.32 & 16.45 & 7.91 \\
+        20 & 416.90 & 85.23 & 24.71 & 8.18 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
 \section{Summary Findings}
 

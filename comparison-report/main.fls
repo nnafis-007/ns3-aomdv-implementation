@@ -94,6 +94,8 @@ INPUT ./protocol_comparison.png
 INPUT ./protocol_comparison.png
 INPUT ./protocol_comparison.png
 INPUT ./protocol_comparison.png
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
 INPUT ./aodv_aomdv_comparison.png
 INPUT ./aodv_aomdv_comparison.png
 INPUT ./aodv_aomdv_comparison.png
