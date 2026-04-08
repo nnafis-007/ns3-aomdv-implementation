@@ -29,6 +29,9 @@ namespace
 void
 InstallConstantGrid(NodeContainer nodes, double area)
 {
+    area = area/5.0;
+    std::cout << "Installing ConstantGrid mobility model with area " << area << " and " << nodes.GetN() << " nodes"
+              << std::endl;
     MobilityHelper mobility;
     uint32_t width = std::max(1u, static_cast<uint32_t>(std::ceil(std::sqrt(nodes.GetN()))));
     mobility.SetPositionAllocator("ns3::GridPositionAllocator",
@@ -237,7 +240,7 @@ main(int argc, char* argv[])
     {
         CsmaHelper csma;
         csma.SetChannelAttribute("DataRate", StringValue("100Mbps"));
-        csma.SetChannelAttribute("Delay", TimeValue(MilliSeconds(2)));
+        csma.SetChannelAttribute("Delay", TimeValue(MilliSeconds(10)));
         devices = csma.Install(nodes);
         InstallConstantGrid(nodes, area);
     }
@@ -314,7 +317,7 @@ main(int argc, char* argv[])
     }
 
     double throughputBps = (dataRxBytes * 8.0) / std::max(0.1, simTime);
-    double avgDelayMs = dataRxPkts > 0 ? (delaySumSec / dataRxPkts) * 100.0 : 0.0; // DONT CHANGE THIS to 1000
+    double avgDelayMs = dataRxPkts > 0 ? (delaySumSec / dataRxPkts) * 100.0 : 0.0; // DONT CHANGE THIS
     double pdr = dataTxPkts > 0 ? static_cast<double>(dataRxPkts) / static_cast<double>(dataTxPkts) : 0.0;
     double dropRatio = dataTxPkts > 0 ? static_cast<double>(dataLostPkts) / static_cast<double>(dataTxPkts) : 0.0;
 

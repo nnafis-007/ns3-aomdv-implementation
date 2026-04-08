@@ -1,5 +1,11 @@
 #!/bin/bash
 
+MODE="wireless"
+CURRENT_PROGRESS=0
+TOTAL_PROGRESS=5
+
+mkdir -p results/wireless-csvs
+
 # # NODES
 # MODE="wired"
 # CURRENT_PROGRESS=0
@@ -8,12 +14,10 @@
 # echo "Starting simulations with varying number of nodes..."
 # for n in 20 40 60 80 100; do
 #   echo "SIM ($((++CURRENT_PROGRESS))/$TOTAL_PROGRESS)"
-#   # flow is half of the number of nodes
-#   flow=$((n/2))
 #   ./ns3 run "scratch/manet-unified-sim.cc \
 #     --mode=$MODE \
 #     --nodes=$n \
-#     --flows=$flow \
+#     --flows=20 \
 #     --pps=30 \
 #     --speed=15 \
 #     --time=20 \
@@ -56,7 +60,7 @@
 # done
 
 #Speed
-echo "Starting simulations with varying PPS..."
+echo "Starting simulations with varying speed..."
 for sp in 5 10 15 20 25; do
   echo "SIM ($((++CURRENT_PROGRESS))/$TOTAL_PROGRESS)"
   ./ns3 run "scratch/manet-unified-sim.cc \
