@@ -6,10 +6,10 @@ MODE="wired"
 CURRENT_PROGRESS=0
 TOTAL_PROGRESS=15
 
-# Tuned baseline values from iterative search.
-BASE_NODES=12
-BASE_FLOWS=10
-BASE_PPS=5
+# Teacher-provided sweep values are used directly here; internal scaling happens in code.
+BASE_NODES=20
+BASE_FLOWS=20
+BASE_PPS=300
 BASE_TIME=60
 BASE_TRAFFIC_START=5
 
@@ -24,7 +24,7 @@ mkdir -p "$OUT_DIR"
 rm -f "$NODES_CSV" "$FLOWS_CSV" "$PPS_CSV"
 
 echo "Starting WIRED simulations with varying number of nodes..."
-for n in 8 12 16 20 24; do
+for n in 20 40 60 80 100; do
   echo "SIM ($((++CURRENT_PROGRESS))/$TOTAL_PROGRESS) | Nodes=$n"
   ./ns3 run "scratch/manet-unified-sim.cc \
     --mode=$MODE \
@@ -39,7 +39,7 @@ for n in 8 12 16 20 24; do
 done
 
 echo "Starting WIRED simulations with varying number of flows..."
-for f in 5 10 15 20 25; do
+for f in 10 20 30 40 50; do
   echo "SIM ($((++CURRENT_PROGRESS))/$TOTAL_PROGRESS) | Flows=$f"
   ./ns3 run "scratch/manet-unified-sim.cc \
     --mode=$MODE \
@@ -54,7 +54,7 @@ for f in 5 10 15 20 25; do
 done
 
 echo "Starting WIRED simulations with varying PPS..."
-for p in 1 2 5 10 15; do
+for p in 100 200 300 400 500; do
   echo "SIM ($((++CURRENT_PROGRESS))/$TOTAL_PROGRESS) | PPS=$p"
   ./ns3 run "scratch/manet-unified-sim.cc \
     --mode=$MODE \

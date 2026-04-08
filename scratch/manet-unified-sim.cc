@@ -30,8 +30,6 @@ void
 InstallConstantGrid(NodeContainer nodes, double area)
 {
     area = area/5.0;
-    std::cout << "Installing ConstantGrid mobility model with area " << area << " and " << nodes.GetN() << " nodes"
-              << std::endl;
     MobilityHelper mobility;
     uint32_t width = std::max(1u, static_cast<uint32_t>(std::ceil(std::sqrt(nodes.GetN()))));
     mobility.SetPositionAllocator("ns3::GridPositionAllocator",
@@ -82,6 +80,38 @@ NeedsHeader(const std::string& csvPath)
 {
     std::ifstream in(csvPath);
     return !in.good() || in.peek() == std::ifstream::traits_type::eof();
+}
+
+uint32_t
+ScaleWithMultiplier(uint32_t teacherValue, double multiplier)
+{
+    long scaled = std::lround(static_cast<double>(teacherValue) * multiplier);
+    return std::max(1L, scaled);
+}
+
+uint32_t
+ScaleTeacherNodes(uint32_t teacherNodes, bool wirelessMode)
+{
+    const double kWiredNodeMultiplier = 0.25;
+    const double kWirelessNodeMultiplier = 1.00;
+    return ScaleWithMultiplier(teacherNodes, wirelessMode ? kWirelessNodeMultiplier : kWiredNodeMultiplier);
+}
+
+uint32_t
+ScaleTeacherFlows(uint32_t teacherFlows, bool wirelessMode)
+{
+    const double kWiredFlowMultiplier = 0.50;
+    const double kWirelessFlowMultiplier = 1.00;
+    return ScaleWithMultiplier(teacherFlows,
+                               wirelessMode ? kWirelessFlowMultiplier : kWiredFlowMultiplier);
+}
+
+uint32_t
+ScaleTeacherPps(uint32_t teacherPps, bool wirelessMode)
+{
+    const double kWiredPpsMultiplier = 0.03;
+    const double kWirelessPpsMultiplier = 0.10;
+    return ScaleWithMultiplier(teacherPps, wirelessMode ? kWirelessPpsMultiplier : kWiredPpsMultiplier);
 }
 
 void
@@ -167,6 +197,16 @@ main(int argc, char* argv[])
         return 2;
     }
 
+    // Preserve teacher-provided values for CSV/reporting while using scaled values internally.
+    const uint32_t teacherNodes = nNodes;
+    const uint32_t teacherFlows = nFlows;
+    const uint32_t teacherPps = pps;
+    const bool wirelessMode = mode == "wireless";
+
+    nNodes = ScaleTeacherNodes(teacherNodes, wirelessMode);
+    nFlows = ScaleTeacherFlows(teacherFlows, wirelessMode);
+    pps = ScaleTeacherPps(teacherPps, wirelessMode);
+
     if (nNodes < 2)
     {
         std::cerr << "Need at least 2 nodes" << std::endl;
@@ -199,7 +239,6 @@ main(int argc, char* argv[])
 
     NetDeviceContainer devices;
     energy::EnergySourceContainer energySources;
-    bool wirelessMode = mode == "wireless";
     double effectiveSpeed = wirelessMode ? speed : 0.0;
 
     if (wirelessMode)
@@ -333,9 +372,10 @@ main(int argc, char* argv[])
             }
         }
     }
-
-    std::cout << "Mode=" << mode << ", Nodes=" << nNodes << ", Flows=" << nFlows << ", PPS=" << pps
+              
+    std::cout << "Mode=" << mode << ", nodes=" << teacherNodes << ", flows=" << teacherFlows << ", pps=" << teacherPps
               << ", Speed=" << effectiveSpeed << " m/s" << std::endl;
+    // std::cout << "simNodes=" << nNodes << ", simFlows=" << nFlows << ", simPps=" << pps << std::endl;
     std::cout << "Throughput(bps): " << throughputBps << std::endl;
     std::cout << "AvgDelay(ms):    " << avgDelayMs << std::endl;
     std::cout << "PDR:             " << pdr << std::endl;
@@ -344,9 +384,9 @@ main(int argc, char* argv[])
 
     AppendCsv(csvPath,
               mode,
-              nNodes,
-              nFlows,
-              pps,
+              teacherNodes,
+              teacherFlows,
+              teacherPps,
               effectiveSpeed,
               simTime,
               packetSize,

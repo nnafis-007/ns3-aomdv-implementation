@@ -60,12 +60,14 @@ The originally specified parameters were:
     \item PPS: 100, 200, 300, 400, 500
 \end{itemize}
 
-However:
+% However:
 
-\begin{itemize}
-    \item For \textbf{wired networks}, the full parameter set was too computationally intensive and unstable for AOMDV. Therefore, reduced parameter values were used.
-    \item For \textbf{wireless networks}, PPS values were scaled down due to hardware limitations and simulation runtime constraints.
-\end{itemize}
+% \begin{itemize}
+%     \item The simulator now accepts these \textbf{teacher-provided values} directly from command-line arguments and stores them as-is in CSV outputs.
+%     \item Internally, values are scaled to keep experiments stable: for nodes \{10,20,30,40,50\} $\rightarrow$ \{8,12,16,20,24\}; for flows \{10,20,30,40,50\} $\rightarrow$ \{5,10,15,20,25\}.
+%     \item For PPS, wired runs use \{100,200,300,400,500\} $\rightarrow$ \{1,2,5,10,15\}, while wireless runs use a milder scaling (approximately PPS$/10$); speed values are used directly without scaling.
+%     \item This approach keeps runtime practical while ensuring reported tables/plots use the original teacher experiment values.
+% \end{itemize}
 
 \section{Modifications Made in the Simulator}
 
