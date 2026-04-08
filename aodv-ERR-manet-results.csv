@@ -1,2 +1,0 @@
-Protocol,Nodes,Flows,Speed_mps,PauseTime_s,ErrorRate,SimTime_s,PacketSize_B,Seed,Run,DataTxPkts,DataRxPkts,DataLostPkts,RoutingTxPkts,RoutingRxPkts,PDR_pct,THPT_bps,GPT_bps,Throughput_kbps,AvgDelay_ms,DelayWithLossPenalty_ms,PCMP_J,RoutingOverhead,PacketLossRate_pct,LostNoRoute,LostQueueTTL
-AODV,40,20,5,1,0,20,512,1,1,5800,2441,1491,4613,3546,42.0862,527256.0000,499916.8000,527.2560,147.4998,164.9047,271.3638,0.7953,25.7069,211,0

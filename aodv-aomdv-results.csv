@@ -1,2 +1,7 @@
-Protocol,Nodes,Flows,Speed_mps,PauseTime_s,ErrorRate,SimTime_s,PacketSize_B,Seed,Run,DataTxPkts,DataRxPkts,DataLostPkts,RoutingTxPkts,RoutingRxPkts,PDR_pct,THPT_bps,GPT_bps,Throughput_kbps,AvgDelay_ms,DelayWithLossPenalty_ms,PCMP_J,RoutingOverhead,PacketLossRate_pct
-AOMDV,10,20,15,1,0,20,512,1,1,2287,1398,323,72,56,61.13,3.02e+05,2.863e+05,302,71.29,326,150.9,0.03148,14.12
+Protocol,Nodes,Flows,Speed_mps,PauseTime_s,ErrorRate,SimTime_s,PacketSize_B,Seed,Run,DataTxPkts,DataRxPkts,DataLostPkts,RoutingTxPkts,RoutingRxPkts,PDR_pct,THPT_bps,GPT_bps,Throughput_kbps,AvgDelay,PCMP_J,PacketLossRate_pct
+AODV,10,10,5,2,0,20,512,1,1,1210,1117,35,203,190,92.31,2.413e+05,2.288e+05,241.3,39.9,99.53,2.893
+AOMDV,10,10,5,2,0,20,512,1,1,846,673,12,31,30,79.55,1.454e+05,1.378e+05,145.4,30.93,99.25,1.418
+AODV,10,10,5,2,0.1,20,512,1,1,1210,915,199,282,277,75.62,1.976e+05,1.874e+05,197.6,502.4,99.29,16.45
+AOMDV,10,10,5,2,0.1,20,512,1,1,746,567,59,29,23,76.01,1.225e+05,1.161e+05,122.5,70.32,99.08,7.909
+AODV,10,10,5,2,0.2,20,512,1,1,1210,715,299,80,77,59.09,1.544e+05,1.464e+05,154.4,416.9,98.97,24.71
+AOMDV,10,10,5,2,0.2,20,512,1,1,685,426,56,44,36,62.19,9.202e+04,8.724e+04,92.02,85.23,99.17,8.175

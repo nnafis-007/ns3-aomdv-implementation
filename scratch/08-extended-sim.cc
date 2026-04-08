@@ -24,17 +24,17 @@ main(int argc, char* argv[])
 {
 	uint32_t nNodes = 10;
 	double simTime = 20.0;
-	std::string protocol = "AOMDV";
+	std::string protocol = "AODV";
 	double errorRate = 0.0;
-	double minSpeed = 5.0;
-	double maxSpeed = 15.0;
-	double pauseTime = 1.0;
-	uint32_t nFlows = 20;
+	double minSpeed = 1.0;
+	double maxSpeed = 5.0;
+	double pauseTime = 2.0;
+	uint32_t nFlows = 10;
 	uint32_t packetSize = 512;
 	double appInterval = 0.12;
 	double lossPenaltyMs = -0.2;
 	std::string csvFile = "aodv-aomdv-results.csv";
-	double maxPosition = 100.0;
+	double maxPosition = 130.0;
 	uint32_t seed = 1;
 	uint32_t run = 1;
 	double initialEnergyJ = 100.0;
@@ -62,7 +62,7 @@ main(int argc, char* argv[])
 
 	if (lossPenaltyMs < 0.0)
 	{
-		lossPenaltyMs = simTime * 100.0;
+		lossPenaltyMs = simTime * 20.0;
 	}
 
 	RngSeedManager::SetSeed(seed);
@@ -228,13 +228,11 @@ main(int argc, char* argv[])
 	double goodputBps = (simTime > 0.0) ? (dataRx * packetSize * 8.0) / simTime : 0.0;
 	double throughputKbps = throughputBps / 1000.0;
 	double pdr = (dataTx > 0) ? (static_cast<double>(dataRx) / dataTx) * 100.0 : 0.0;
-	double avgDelayMs = (dataRx > 0) ? (dataDelaySum / dataRx) * 1000.0 : 0.0;
-	double delayWithLossPenaltyMs =
+	double avgDelay =
 		(dataTx > 0)
 			? (((dataDelaySum * 1000.0) + (static_cast<double>(dataLost) * lossPenaltyMs)) /
 			   static_cast<double>(dataTx))
 			: 0.0;
-	double routingOverhead = (dataTx > 0) ? static_cast<double>(routingTx) / dataTx : 0.0;
 	double packetLossRate = (dataTx > 0) ? (static_cast<double>(dataLost) / dataTx) * 100.0 : 0.0;
 
 	double sinkPowerConsumptionJ = 0.0;
@@ -251,8 +249,7 @@ main(int argc, char* argv[])
 			  << "Protocol=" << protocol << " Tx=" << dataTx << " Rx=" << dataRx
 			  << " Lost=" << dataLost << " PDR=" << pdr << "%"
 			  << " THPT_kbps=" << throughputKbps << " GPT_bps=" << goodputBps
-			  << " AvgDelay_ms=" << avgDelayMs
-			  << " DelayWithLossPenalty_ms=" << delayWithLossPenaltyMs << std::endl;
+			  << " AvgDelay=" << avgDelay << std::endl;
 
 	bool fileExists = false;
 	{
@@ -265,16 +262,16 @@ main(int argc, char* argv[])
 	{
 		csv << "Protocol,Nodes,Flows,Speed_mps,PauseTime_s,ErrorRate,SimTime_s,PacketSize_B,Seed,Run,"
 			<< "DataTxPkts,DataRxPkts,DataLostPkts,RoutingTxPkts,RoutingRxPkts,"
-			<< "PDR_pct,THPT_bps,GPT_bps,Throughput_kbps,AvgDelay_ms,DelayWithLossPenalty_ms,PCMP_J,"
-			<< "RoutingOverhead,PacketLossRate_pct\n";
+			<< "PDR_pct,THPT_bps,GPT_bps,Throughput_kbps,AvgDelay,PCMP_J,"
+			<< "PacketLossRate_pct\n";
 	}
 
 	csv << protocol << "," << nNodes << "," << nFlows << "," << maxSpeed << "," << pauseTime << ","
 		<< errorRate << "," << simTime << "," << packetSize << "," << seed << "," << run << ","
 		<< dataTx << "," << dataRx << "," << dataLost << "," << routingTx << "," << routingRx << ","
 		<< std::setprecision(4) << pdr << "," << throughputBps << "," << goodputBps << ","
-		<< throughputKbps << "," << avgDelayMs << "," << delayWithLossPenaltyMs << ","
-		<< sinkPowerConsumptionJ << "," << routingOverhead << "," << packetLossRate << "\n";
+		<< throughputKbps << "," << avgDelay << ","
+		<< sinkPowerConsumptionJ << "," << packetLossRate << "\n";
 	csv.close();
 
 	Simulator::Destroy();
