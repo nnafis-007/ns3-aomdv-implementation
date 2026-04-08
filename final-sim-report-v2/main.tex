@@ -1,0 +1,205 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{titlesec}
+
+\title{\textbf{Performance Evaluation of AOMDV Protocol in Wired and Wireless Networks using ns-3}}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+This report presents a performance evaluation of the AOMDV (Ad hoc On-demand Multipath Distance Vector) routing protocol using the ns-3 network simulator. The study analyzes both wired and wireless network scenarios under varying parameters to understand the behavior of the protocol under different network conditions.
+
+The key performance metrics evaluated include throughput, end-to-end delay, packet delivery ratio (PDR), packet drop ratio, and energy consumption.
+
+\section{Network Topologies Under Simulation}
+
+Two different network environments were considered:
+
+\subsection{Wireless Network}
+\begin{itemize}
+    \item Multi-hop ad hoc network
+    \item Nodes deployed with mobility
+    \item AOMDV routing protocol used
+\end{itemize}
+
+\subsection{Wired Network}
+\begin{itemize}
+    \item Static topology
+    \item Point-to-point links
+    \item AOMDV applied for routing
+\end{itemize}
+
+\section{Parameters Under Variation}
+
+The following parameters were varied:
+
+\begin{itemize}
+    \item Number of nodes
+    \item Number of flows
+    \item Packets per second (PPS)
+    \item Node speed (wireless only)
+\end{itemize}
+
+\subsection{Note on Parameter Selection}
+
+The originally specified parameters were:
+
+\begin{itemize}
+    \item Nodes: 20, 40, 60, 80, 100
+    \item Flows: 10, 20, 30, 40, 50
+    \item PPS: 100, 200, 300, 400, 500
+\end{itemize}
+
+However:
+
+\begin{itemize}
+    \item For \textbf{wired networks}, the full parameter set was too computationally intensive and unstable for AOMDV. Therefore, reduced parameter values were used.
+    \item For \textbf{wireless networks}, PPS values were scaled down due to hardware limitations and simulation runtime constraints.
+\end{itemize}
+
+\section{Modifications Made in the Simulator}
+
+The following modifications were implemented:
+
+\begin{itemize}
+    \item Customized traffic generation to control PPS dynamically
+    \item Logging mechanisms added for:
+        \begin{itemize}
+            \item Throughput
+            \item Delay
+            \item Packet delivery and drop ratios
+            \item Energy consumption
+        \end{itemize}
+    \item Simulation scripts adapted to support iterative parameter sweeps
+\end{itemize}
+
+\section{Results}
+
+\subsection{Wireless Network Results}
+
+\subsubsection{Effect of PPS}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=0.9\textheight,keepaspectratio]{../results/wireless-csvs/plot-pps-metrics.png}
+    \caption{Wireless: Performance vs PPS}
+\end{figure}
+
+Throughput increases with PPS initially, reaching a peak before slightly declining due to network congestion. Delay and packet drop ratio increase steadily with higher PPS, while PDR decreases. Energy consumption also increases with load.
+
+\subsubsection{Effect of Number of Flows}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=0.9\textheight,keepaspectratio]{../results/wireless-csvs/plot-flows-metrics.png}
+    \caption{Wireless: Performance vs Number of Flows}
+\end{figure}
+
+Throughput peaks at moderate flow levels and decreases as contention increases. Delay rises significantly at higher flows, indicating congestion. Packet delivery ratio drops sharply, while packet drops increase.
+
+\subsubsection{Effect of Node Speed}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=0.9\textheight,keepaspectratio]{../results/wireless-csvs/plot-speed-metrics.png}
+    \caption{Wireless: Performance vs Node Speed}
+\end{figure}
+
+Higher mobility leads to unstable routes, reducing throughput and PDR. Delay and packet loss increase due to frequent route breakages.
+
+\subsubsection{Effect of Number of Nodes}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=0.9\textheight,keepaspectratio]{../results/wireless-csvs/plot-nodes-metrics.png}
+    \caption{Wireless: Performance vs Number of Nodes}
+\end{figure}
+
+Increasing node density initially improves connectivity but eventually leads to congestion, reducing throughput and PDR while increasing delay and energy consumption.
+
+\subsection{Wired Network Results}
+
+\subsubsection{Effect of PPS}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=0.9\textheight,keepaspectratio]{../results/wired-csvs/plot-pps-metrics.png}
+    \caption{Wired: Performance vs PPS}
+\end{figure}
+
+Throughput increases up to a threshold and then drops sharply due to buffer overflow and congestion. Delay increases significantly at higher PPS values.
+
+\subsubsection{Effect of Number of Flows}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=0.9\textheight,keepaspectratio]{../results/wired-csvs/plot-flows-metrics.png}
+    \caption{Wired: Performance vs Number of Flows}
+\end{figure}
+
+As flows increase, throughput decreases due to contention. Delay and packet drop ratio increase significantly.
+
+\subsubsection{Effect of Number of Nodes}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=0.9\textheight,keepaspectratio]{../results/wired-csvs/plot-nodes-metrics.png}
+    \caption{Wired: Performance vs Number of Nodes}
+\end{figure}
+
+Higher node counts result in severe degradation in throughput and reliability due to routing overhead and congestion.
+
+\section{Summary Findings}
+
+\begin{itemize}
+    \item AOMDV performs well under moderate load conditions.
+    \item High PPS and flow counts lead to congestion and performance degradation.
+    \item Mobility negatively impacts routing stability in wireless networks.
+    \item Increasing nodes improves connectivity initially but degrades performance beyond a threshold.
+    \item Wired networks show sharper performance drops under heavy load compared to wireless networks.
+\end{itemize}
+
+\section{Discussion and Reflection}
+
+The results highlight the limitations of AOMDV under high traffic and dense network conditions. While multipath routing improves resilience, it introduces additional overhead that becomes significant under heavy load.
+
+The deviation from the originally specified parameters was necessary due to:
+
+\begin{itemize}
+    \item Hardware limitations preventing large-scale simulations
+    \item Excessive congestion causing unstable or non-converging simulations
+\end{itemize}
+
+This adjustment ensured meaningful and stable results.
+
+From the observations:
+
+\begin{itemize}
+    \item There exists an optimal operating region for AOMDV
+    \item Beyond this region, performance degrades rapidly
+    \item Trade-offs between throughput, delay, and reliability are clearly visible
+\end{itemize}
+
+Future work could explore:
+
+\begin{itemize}
+    \item Comparison with other routing protocols (AODV, DSR)
+    \item Optimization techniques for congestion control
+    \item Adaptive routing based on network conditions
+\end{itemize}
+
+\section{Conclusion}
+
+This study demonstrates that AOMDV is effective in moderate network conditions but struggles under high load and dense deployments. Careful parameter tuning is essential to achieve optimal performance in both wired and wireless environments.
+
+\end{document}
