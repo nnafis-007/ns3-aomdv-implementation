@@ -72,15 +72,11 @@ However:
 The following modifications were implemented:
 
 \begin{itemize}
-    \item Customized traffic generation to control PPS dynamically
-    \item Logging mechanisms added for:
-        \begin{itemize}
-            \item Throughput
-            \item Delay
-            \item Packet delivery and drop ratios
-            \item Energy consumption
-        \end{itemize}
-    \item Simulation scripts adapted to support iterative parameter sweeps
+    \item A new \textbf{AOMDV routing module} was implemented from scratch under \texttt{src/aomdv}, including helper, routing, packet, and routing-table components integrated with the ns-3 IPv4 routing framework.
+    \item Custom control packet headers were implemented for \textbf{RREQ}, \textbf{RREP}, \textbf{RERR}, and \textbf{HELLO} messages, with serialization/deserialization support and explicit message typing.
+    \item Multipath routing state was added by storing multiple next hops per destination (with sequence numbers, hop counts, and expiry times), selecting the best valid path for forwarding, and purging expired paths periodically.
+    \item Route discovery/maintenance logic was implemented with duplicate RREQ suppression, reverse-path installation from RREQs, forward-path installation from RREPs, and route error propagation/invalidations when links fail.
+    \item Per-interface UDP sockets and timers were used to exchange AOMDV control traffic, with configurable attributes such as maximum paths, active route timeout, hello interval, and path discovery time.
 \end{itemize}
 
 \section{Results}
